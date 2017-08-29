@@ -1,0 +1,32 @@
+{
+  "name": "mobile",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "react-devtools": "react-devtools",
+    "clean": "rm -rf node_modules && npm install",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+  },
+  "dependencies": {
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.45.1",
+    "react-native-fontawesome": "^5.7.0",
+    "react-native-meteor": "^1.0.5",
+    "react-native-twitter": "^0.1.0",
+    "rn-viewpager": "^1.2.3"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.0.0",
+    "jest": "20.0.4",
+    "react-devtools": "^2.5.0",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
