@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 import {PagerTabIndicator, IndicatorViewPager} from 'rn-viewpager';
 import EventPage from '../containers/EventPage';
+import AnnouncementPage from '../containers/AnnouncementsPage'
 import Page from './Page';
 import {styles} from '../styles';
 import { fontsloaded, loadFonts } from '../actions'
@@ -17,6 +18,7 @@ const renderTabIndicator = () => {
     { text: "A" }, // bullhorn
     { text: "I" }, // info
     { text: "H" }, // hosting
+    { text: "M"}, // maps
   ];
   return (<PagerTabIndicator
     tabs={tabs}
@@ -40,21 +42,21 @@ class Main extends Component {
   }
 
   render() {
-    return ( 
-      this.props.fontLoaded ? 
+    return (
+      this.props.fontLoaded ?
       (<IndicatorViewPager
         style={{flex: 1}}
         indicator={renderTabIndicator()}
         initialPage={0}
-        scrollEnabled={true}> 
+        scrollEnabled={true}>
         <Page><EventPage /></Page>
-        <Page>{placeHolder("Announcements")}</Page>
+        <Page><AnnouncementPage /></Page>
         <Page>{placeHolder("Info")}</Page>
         <Page>{placeHolder("Hosting")}</Page>
+        <Page>{placeHolder("Maps")}</Page>
       </IndicatorViewPager>) : null
     )
   }
-
 }
 
 const mapStateToProps = state => {

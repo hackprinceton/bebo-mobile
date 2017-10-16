@@ -2,27 +2,27 @@ import { connect } from 'react-redux'
 import {
   View,
 } from 'react-native'
-import { fetchEvents } from '../actions/Events'
-import { EventList } from '../components/EventList'
+import { fetchAnnouncements } from '../actions/Announcements'
+import { AnnouncementList } from '../components/AnnouncementList'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-class EventPage extends Component {
+class AnnouncementPage extends Component {
   static propTypes = {
-    events: PropTypes.array.isRequired,
+    announcements: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(fetchEvents())
+    dispatch(fetchAnnouncements())
   }
 
   render() {
-    const { events } = this.props
+    const { announcements } = this.props
     return (
       <View>
-        <EventList events={events} />
+        <AnnouncementList announcements={announcements} />
       </View>
     )
   }
@@ -30,10 +30,10 @@ class EventPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    announcements: state.announcements
   }
 }
 
 export default connect(
   mapStateToProps,
-)(EventPage)
+)(AnnouncementPage)
