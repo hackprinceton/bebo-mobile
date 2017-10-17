@@ -4,26 +4,14 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux'
-import {PagerTabIndicator, IndicatorViewPager} from 'rn-viewpager';
 import EventPage from '../containers/EventPage';
 import AnnouncementPage from '../containers/AnnouncementsPage'
 import Page from './Page';
-import {styles} from '../styles';
-import { fontsloaded, loadFonts } from '../actions'
+import Drawer from 'react-native-drawer'
+import DrawerOptions from './DrawerOptions'
+import { styles } from '../styles';
+import { fontsloaded, loadFonts, closeMenu } from '../actions'
 import PropTypes from 'prop-types'
-
-const renderTabIndicator = () => {
-  let tabs = [
-    { text: "E" }, // calendar
-    { text: "A" }, // bullhorn
-    { text: "I" }, // info
-    { text: "H" }, // hosting
-    { text: "M"}, // maps
-  ];
-  return (<PagerTabIndicator
-    tabs={tabs}
-  />);
-}
 
 const placeHolder = (text) => {
   return (
@@ -34,35 +22,79 @@ const placeHolder = (text) => {
 class Main extends Component {
   static propTypes = {
     fontLoaded: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     this.props.dispatch(loadFonts())
   }
 
-  render() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.menuIsOpen) {
+      this.drawer.open()
+    }
+  }
+
+  placeHolder (text) {
     return (
-      this.props.fontLoaded ?
-      (<IndicatorViewPager
-        style={{flex: 1}}
-        indicator={renderTabIndicator()}
-        initialPage={0}
-        scrollEnabled={true}>
-        <Page><EventPage /></Page>
-        <Page><AnnouncementPage /></Page>
-        <Page>{placeHolder("Info")}</Page>
-        <Page>{placeHolder("Hosting")}</Page>
-        <Page>{placeHolder("Maps")}</Page>
-      </IndicatorViewPager>) : null
+      <View><Text>{text}</Text></View>
+    )
+  }
+
+  getPage(page) {
+    switch (page) {
+      case 'EVENT_PAGE': return <Page><EventPage /></Page>
+      case 'ANNOUNCEMENT_PAGE': return <Page><AnnouncementPage /></Page>
+      default: return <Page>{placeHolder("Not Found")}</Page>
+    }
+  }
+
+  render() {
+    var { onClose } = this.props
+    return ( 
+      this.props.fontLoaded ? 
+      (<Drawer
+        ref={ref => this.drawer = ref}
+        type="displace"
+        content={
+          <DrawerOptions />
+        }
+        openDrawerOffset={(viewport) => viewport.width - 200}
+        acceptTap
+        styles={{flex: 1}}
+        onOpen={() => {
+          console.log('onopen')
+        }}
+        onClose={() => {
+          console.log('onclose')
+          onClose()
+        }}
+        captureGestures={false}
+        tweenDuration={100}
+        >
+        {this.getPage(this.props.page)}
+        </Drawer>) : null
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    fontLoaded: state.font
+    fontLoaded: state.font,
+    page: state.navbar.page,
+    menuIsOpen: state.navbar.menuIsOpen
   }
 }
 
-export default connect(mapStateToProps)(Main)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClose: () => dispatch(closeMenu()),
+    dispatch: dispatch
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main)

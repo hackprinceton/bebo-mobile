@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   hackprinceton: {
     fontSize: 16,
     color: hpOrange2,
-    fontFamily: 'sans-serif',
+    fontFamily: 'Abel',
   },
   card: {
     margin: 10,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 32,
     color: hpOrange1,
-    fontFamily: 'sans-serif',
+    fontFamily: 'Abel',
   },
   dayofEvent: {
     margin: 10,
@@ -42,11 +42,11 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: hpBrown1,
-    fontFamily: 'sans-serif',
+    fontFamily: 'Abel',
   },
   body: {
     color: '#000000',
-    fontFamily: 'sans-serif',
+    fontFamily: 'Abel',
   },
   columns: {
     marginBottom: 10,
@@ -60,4 +60,26 @@ export const styles = StyleSheet.create({
     height: 1,
     backgroundColor: hpBrown1,
   },
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: hpBrown1,
+    padding: 5,
+  },
+  drawerOptions: {
+    backgroundColor: hpBrown1,
+    padding: 10,
+    flex: 1,
+  },
+  drawerItem: {
+    backgroundColor: hpCream, 
+    padding: 10,
+    borderWidth: 1,
+    borderColor: hpBrown2,
+  },
+  drawerItemText: {
+    fontFamily: 'Abel',
+    fontSize: 16,
+    color: hpBrown1,
+  }
 });

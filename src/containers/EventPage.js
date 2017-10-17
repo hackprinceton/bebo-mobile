@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {
   View,
 } from 'react-native'
-import { fetchEvents } from '../actions/Events'
+import { fetchEvents } from '../actions/events'
 import { EventList } from '../components/EventList'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
