@@ -22,10 +22,10 @@ class DrawerOptions extends Component {
   }
 
   renderCustomPageLinks() {
-    return this.props.pageUrls.map(url => {
+    return this.props.pageUrls.map(pageUrl => {
       return (
-        <TouchableOpacity key={url.slug} style={styles.drawerItem} onPress={() => this.openPage(url.slug)}>
-          <Text style={styles.drawerItemText}>{url.name}</Text>
+        <TouchableOpacity key={pageUrl.url} style={styles.drawerItem} onPress={() => this.openPage(pageUrl.url)}>
+          <Text style={styles.drawerItemText}>{pageUrl.title}</Text>
         </TouchableOpacity>
       )
     })

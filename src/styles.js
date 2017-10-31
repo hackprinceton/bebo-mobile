@@ -2,6 +2,9 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
+import { Constants } from 'expo'
+
+const statusBarHeight = Constants.statusBarHeight;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -65,6 +68,7 @@ export const styles = StyleSheet.create({
     backgroundColor: hpBrown1,
   },
   navbar: {
+    paddingTop: statusBarHeight,
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: hpBrown1,

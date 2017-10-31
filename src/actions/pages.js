@@ -10,22 +10,25 @@ export const pagesSuccess = pageUrls => {
     pageUrls: pageUrls 
   }
 }
+
+export const pagesError = error => {
+  return {
+    type: 'LOAD_PAGES_ERR',
+    error: error
+  }
+}
+
 export const fetchPages = () => dispatch => {
   dispatch(pagesRequest())
-  let mock = [
-    {
-      name: 'Travel',
-      slug: 'travel',
-    },
-    {
-      name: 'Guide',
-      slug: 'guide',
-    },
-    {
-      name: 'Hosting',
-      slug: 'host',
+  fetch('https://hackprinceton.com/api/pages.json')
+  .then(response => {
+    if (response.ok) {
+      response.json().then(json =>  
+        dispatch(pagesSuccess(json))
+      )
     }
-  ]
-
-  dispatch(pagesSuccess(mock))
+  })
+  .catch(err => {
+    dispatch(downloadFileError(err))
+  })
 }

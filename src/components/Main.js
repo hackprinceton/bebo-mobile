@@ -55,7 +55,7 @@ class Main extends Component {
         <Page>
           <View style={{flex:1, alignItems: 'flex-end'}}>
             <WebView 
-              source={{uri: `https://hackprinceton.com/${page}?embedded=1`}} 
+              source={{uri: `https://hackprinceton.com${page}?embedded=1`}} 
               style={styles.webview}
               javaScriptEnabled={true}
               domStorageEnabled={true}
