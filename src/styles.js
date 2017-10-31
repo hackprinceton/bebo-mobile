@@ -1,6 +1,10 @@
 import {
   StyleSheet,
+  Dimensions,
 } from 'react-native';
+
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const hpOrange1 = "#f6916b";
 const hpOrange2 = "#f16248";
@@ -81,5 +85,9 @@ export const styles = StyleSheet.create({
     fontFamily: 'Abel',
     fontSize: 16,
     color: hpBrown1,
-  }
+  },
+  webview: {
+    width: deviceWidth,
+    height: deviceHeight,
+  },
 });

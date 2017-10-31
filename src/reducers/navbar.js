@@ -11,7 +11,7 @@ export default navbar = (state = {
     case 'SELECT_PAGE':
       return {
         ... state,
-        menuIsOpen: true,
+        menuIsOpen: false,
         page: action.page
       }
     case 'CLOSE_MENU':

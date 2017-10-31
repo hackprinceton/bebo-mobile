@@ -9,7 +9,6 @@ import { styles } from '../styles'
 
 
 export const Announcement = anoun => {
-  console.log("rendering announcement " + JSON.stringify(anoun))
   return (
     <View style={styles.dayofEvent}>
       <Text style={styles.title}>{anoun.item.title}</Text>

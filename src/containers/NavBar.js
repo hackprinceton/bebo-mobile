@@ -25,7 +25,6 @@ class NavBar extends Component {
 
   render() {
     var {onOpen} = this.props 
-    console.log("what: " + onOpen)
     return (
       <View style={styles.navbar}>
         <Button 

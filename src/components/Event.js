@@ -15,7 +15,6 @@ const formatTime = time => {
 }
 
 export const Event = evt => {
-  console.log("rendering evt " + JSON.stringify(evt))
   const timeStr = formatTime(evt.item.start) + '-' + formatTime(evt.item.end);
   const location = (evt.item.location) ?
     <Text style={styles.body}><FontAwesome>{Icons.mapMarker}</FontAwesome> {evt.item.location}</Text> :
